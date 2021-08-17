@@ -1,0 +1,11 @@
+// TutorialConfig.h.in
+#ifndef __TUTORIALCONFIG_H__
+#define __TUTORIALCONFIG_H__
+
+#define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
+#define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
+
+#define My_Var_1 "@myVar1@"
+#define My_Var_2 "${myVar2}"
+
+#endif // __TUTORIALCONFIG_H__
