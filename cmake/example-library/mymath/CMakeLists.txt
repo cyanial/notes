@@ -8,3 +8,10 @@ target_include_directories(MyMath
 )
 
 # `INTERFACE` means things that consumers require but the producer doesn't.
+
+
+# Installing
+install(TARGETS MyMath DESTINATION lib)
+install(FILES mymath.h DESTINATION include)
+
+## install(DIRECTORIES include ...)

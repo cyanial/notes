@@ -13,3 +13,6 @@ target_include_directories(use_lib PUBLIC
   "${PROJECT_SOURCE_DIR}/mymath"
 )
 
+
+# Installing
+install(TARGETS use_lib DESTINATION bin)

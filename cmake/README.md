@@ -8,6 +8,7 @@
     - [Set up the C++ Standard](#set-up-the-c-standard)
     - [Out-of-source build](#out-of-source-build)
   - [Linking libraries](#linking-libraries)
+  - [Installing & Testing](#installing--testing)
 
 ## Basic Start 
 
@@ -123,4 +124,32 @@ target_link_libraries(use_lib PUBLIC MyMath)
 target_include_directories(use_lib PUBLIC
   "${PROJECT_SOURCE_DIR}/mymath"
 )
+```
+
+
+## Installing & Testing
+
+Install destination will be combined with `CMAKE_INSTALL_PREFIX`.
+
+```cmake
+install(TARGETS MyMath DESTINATION lib)
+install(FILES mymath.h DESTINATION include)
+```
+
+If we organize our source code with `include` lib. We can set that:
+
+```cmake
+install(DIRECTORES my_include DESTINATION include)
+```
+
+We can build with `CMAKE_INSTALL_PREFIX` to specify a install prefix:
+
+```cmake
+$ cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/opt
+```
+
+Or we can specify a prefix at install time:
+
+```cmake
+$ cmake --install . --prefix "/home/myuser/installdir"
 ```
