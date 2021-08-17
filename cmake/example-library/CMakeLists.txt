@@ -12,3 +12,4 @@ target_link_libraries(use_lib PUBLIC MyMath)
 target_include_directories(use_lib PUBLIC
   "${PROJECT_SOURCE_DIR}/mymath"
 )
+
