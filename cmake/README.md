@@ -4,9 +4,9 @@
   - [Basic Start](#basic-start)
     - [Install CMake & ninja-build (MacOS)](#install-cmake--ninja-build-macos)
     - [Basic structure](#basic-structure)
-  - [Access variable in CMake](#access-variable-in-cmake)
-  - [Set up the C++ Standard](#set-up-the-c-standard)
-  - [Out-of-source build](#out-of-source-build)
+    - [Access variable in CMake](#access-variable-in-cmake)
+    - [Set up the C++ Standard](#set-up-the-c-standard)
+    - [Out-of-source build](#out-of-source-build)
 
 ## Basic Start 
 
@@ -36,7 +36,7 @@ project(Tutorial)
 add_executable(Tutorial tutorial.cpp)
 ```
 
-## Access variable in CMake
+### Access variable in CMake
 
 Set up a config header file `TutorialConfig.h.in` to generate `TutorialConfig.h`.
 
@@ -70,7 +70,7 @@ target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}")
 #endif // __TUTORIALCONFIG_H__
 ```
 
-## Set up the C++ Standard
+### Set up the C++ Standard
 
 Set the CMake Variable `CMAKE_C_STANDARD` and `CMAKE_CXX_STANDARD` to speficy a C/C++ standard. Variable `CMAKE_CXX_STANDARD_REQUIRED` makes sure that the standard must required.
 
@@ -86,7 +86,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # add_executable
 ```
 
-## Out-of-source build
+### Out-of-source build
 
 Seperate the source file and the build output to better organize the project.
 
