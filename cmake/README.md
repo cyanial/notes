@@ -8,7 +8,7 @@
     - [Set up the C++ Standard](#set-up-the-c-standard)
     - [Out-of-source build](#out-of-source-build)
   - [Linking libraries](#linking-libraries)
-  - [Installing & Testing](#installing--testing)
+  - [Installing](#installing)
 
 ## Basic Start 
 
@@ -127,7 +127,7 @@ target_include_directories(use_lib PUBLIC
 ```
 
 
-## Installing & Testing
+## Installing
 
 Install destination will be combined with `CMAKE_INSTALL_PREFIX`.
 
