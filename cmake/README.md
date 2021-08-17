@@ -7,6 +7,7 @@
     - [Access variable in CMake](#access-variable-in-cmake)
     - [Set up the C++ Standard](#set-up-the-c-standard)
     - [Out-of-source build](#out-of-source-build)
+  - [Linking libraries](#linking-libraries)
 
 ## Basic Start 
 
@@ -95,3 +96,31 @@ $ cmake -S . -B build [-G Ninja] 
 $ cmake --build build
 ```
 
+## Linking libraries
+
+Suppose we have a sub directory called `mymath` which contains my self-defined math lib and a sub-dir `CMakeLists.txt`. 
+
+Libraries are built with `STATIC` by default.
+
+```cmake
+# mymath/CMakeLists.txt
+
+add_library(MyMath mymath.cpp)
+```
+
+```cmake
+# Top-level CMakeLists.txt
+cmake_minimum_required(VERSION 3.10)
+
+project(use_lib)
+
+add_subdirectory(mymath)
+
+add_executable(use_lib main.cpp)
+
+target_link_libraries(use_lib PUBLIC MyMath)
+
+target_include_directories(use_lib PUBLIC
+  "${PROJECT_SOURCE_DIR}/mymath"
+)
+```
