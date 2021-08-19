@@ -162,7 +162,7 @@ If we organize our source code with `include` lib. We can set that:
 install(DIRECTORES my_include DESTINATION include)
 ```
 
-We can build with `CMAKE_INSTALL_PREFIX` to specify a install prefix:
+We can build with `CMAKE_INSTALL_PREFIX` to specify a install prefix: (default: `/usr/local`)
 
 ```cmake
 $ cmake -S . -B build -DCMAKE_INSTALL_PREFIX=/opt
