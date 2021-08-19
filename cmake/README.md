@@ -10,6 +10,8 @@
     - [Run a cmake script](#run-a-cmake-script)
   - [Linking libraries](#linking-libraries)
   - [Installing](#installing)
+  - [Cached Variable](#cached-variable)
+  - [Build Types](#build-types)
 
 ## Basic Start 
 
@@ -171,3 +173,17 @@ Or we can specify a prefix at install time:
 ```cmake
 $ cmake --install . --prefix "/home/myuser/installdir"
 ```
+
+## Cached Variable
+
+
+## Build Types
+
+Set the variable `CMAKE_BUILD_TYPE` from `Release`, `Debug` or ...
+
+| CMAKE_BUILD_TYPE | Compiler Setting |
+| ---------------- | ---------------- |
+| Release          | -O3 -DNDEBUG     |
+| Debug            | -g               |
+| MinSizeRel       | -Os -DNDEBUG     |
+| RelWithDebInfo   | -O2 -g -DNDEBUG  |
