@@ -7,6 +7,7 @@
     - [Access variable in CMake](#access-variable-in-cmake)
     - [Set up the C++ Standard](#set-up-the-c-standard)
     - [Out-of-source build](#out-of-source-build)
+    - [Run a cmake script](#run-a-cmake-script)
   - [Linking libraries](#linking-libraries)
   - [Installing](#installing)
 
@@ -95,6 +96,23 @@ Seperate the source file and the build output to better organize the project.
 ```sh
 $ cmake -S . -B build [-G Ninja] 
 $ cmake --build build
+```
+
+### Run a cmake script
+
+Suppose we have a cmake script called `example.cmake`.
+
+```cmake
+# example.cmake
+set(MY_VARIABLE "I am a variable")
+
+message(STATUS "${MY_VARIABLE}")
+```
+
+To run it we can use following command:
+
+```sh
+$ cmake -P example.cmake
 ```
 
 ## Linking libraries
