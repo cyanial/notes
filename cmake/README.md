@@ -10,7 +10,7 @@
     - [Run a cmake script](#run-a-cmake-script)
   - [Linking libraries](#linking-libraries)
   - [Installing](#installing)
-  - [Cached Variable](#cached-variable)
+  - [Cached Variable & option](#cached-variable--option)
   - [Build Types](#build-types)
 
 ## Basic Start 
@@ -174,7 +174,7 @@ Or we can specify a prefix at install time:
 $ cmake --install . --prefix "/home/myuser/installdir"
 ```
 
-## Cached Variable
+## Cached Variable & option
 
 
 ## Build Types
