@@ -12,6 +12,7 @@
   - [Installing](#installing)
   - [Cached Variable & option](#cached-variable--option)
   - [Build Types](#build-types)
+  - [Pre-defined directory variable](#pre-defined-directory-variable)
 
 ## Basic Start 
 
@@ -187,3 +188,18 @@ Set the variable `CMAKE_BUILD_TYPE` from `Release`, `Debug` or ...
 | Debug            | -g               |
 | MinSizeRel       | -Os -DNDEBUG     |
 | RelWithDebInfo   | -O2 -g -DNDEBUG  |
+
+## Pre-defined directory variable
+
+We run the cmake by `cmake -S. -Bbuild`.
+
+| Variable                  | Location                                              |
+| ------------------------- | ----------------------------------------------------- |
+| CMAKE_BINARY_DIR          | Top-level build path                                  |
+| CMAKE_SOURCE_DIR          | Top-level source path                                 |
+| CMAKE_CURRENT_BINARY_DIR  | Current CMakeLists.txt build path                     |
+| CMAKE_CURRENT_SOURCE_DIR  | Current CMakeLists.txt source path                    |
+| <PROJECT_NAME>_BINARY_DIR | Top level build path for the named project            |
+| <PROJECT_NAME>_SOURCE_DIR | Top level source path for the named project           |
+| PROJECT_BINARY_DIR        | Build directory of the most recent project() command  |
+| PROJECT_SOURCE_DIR        | Source directory of the most recent project() command |
