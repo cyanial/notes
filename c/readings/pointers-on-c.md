@@ -1,6 +1,9 @@
-# Pointers On C by Kenneth Reek
+# Pointers On C by Kenneth Reek 
 
-### 1.1 Tips: Comments code bocks with `#if 0 #endif`
+- [Pointers On C by Kenneth Reek](#pointers-on-c-by-kenneth-reek)
+- [1.1 Tip: Comments code bocks with `#if 0 #endif`](#11-tip-comments-code-bocks-with-if-0-endif)
+
+# 1.1 Tip: Comments code bocks with `#if 0 #endif`
 
 Supposed that we have blocks of codes with traditional c-comments(`/* */`).
 
@@ -25,4 +28,4 @@ If we comments the code in traditional way, then -
 #include <stdio.h>
 ...
 ```
-It may cause a compiler-time error.
+It may cause a compiler-time error. Cause that `/* */` are not paired like brickets.
