@@ -4,6 +4,7 @@
 - [1.1 Tip: Comments code bocks with `#if 0 #endif`](#11-tip-comments-code-bocks-with-if-0-endif)
 - [1.1 `getchar()` return a int type](#11-getchar-return-a-int-type)
 - [3.2 When & Why check an array subscript](#32-when--why-check-an-array-subscript)
+- [5.1 Bit Manipulation](#51-bit-manipulation)
 
 # 1.1 Tip: Comments code bocks with `#if 0 #endif`
 
@@ -39,3 +40,27 @@ When there's nothing to read in the input buffer, the function will return `EOF`
 # 3.2 When & Why check an array subscript
 
 > If a subscript was computed from values that are already known to be correct, then there is no need to check its value. Any value this is derived in any way from data trhat the user has entered must be checked before being used as a subscript to ensure that it is in the proper range.
+
+# 5.1 Bit Manipulation
+
+Set specified bit to one:
+
+```c
+value = value | 1 << bit_number;
+value |= 1 << bit_number;
+```
+
+Clear specified bit to zero:
+
+```c
+value = value & ~ (1 << bit_number);
+value &= ~(1 << bit_number);
+```
+
+Test specified bit and is nonzero if the bit is set:
+
+```c
+vale & 1 << bit_number
+```
+
+
