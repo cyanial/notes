@@ -6,7 +6,7 @@ Pointers On C by Kenneth Reek
 - [1.1 `getchar()` return a int type](#11-getchar-return-a-int-type)
 - [3.2 When & Why check an array subscript](#32-when--why-check-an-array-subscript)
 - [5.1 Bit Manipulation](#51-bit-manipulation)
-  - [7.6 Variable Argument Lists](#76-variable-argument-lists)
+- [7.6 Variable Argument Lists](#76-variable-argument-lists)
 
 # 1.1 Tip: Comments code bocks with `#if 0 #endif`
 
@@ -65,7 +65,7 @@ Test specified bit and is nonzero if the bit is set:
 vale & 1 << bit_number
 ```
 
-## 7.6 Variable Argument Lists
+# 7.6 Variable Argument Lists
 
 The standard C library `stdarg.h` provides a way to access varied function parameters. And, we can access these paremeters with the specified macros defined in the head file. Example Codes:
 
