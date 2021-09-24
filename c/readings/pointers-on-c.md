@@ -62,7 +62,7 @@ value &= ~(1 << bit_number);
 Test specified bit and is nonzero if the bit is set:
 
 ```c
-vale & 1 << bit_number
+value & 1 << bit_number
 ```
 
 # 7.6 Variable Argument Lists
