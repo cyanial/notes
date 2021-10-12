@@ -7,6 +7,8 @@
     - [Liskov Substitution Principle (LSP)](#liskov-substitution-principle-lsp)
     - [Interface Segregation Principle (ISP)](#interface-segregation-principle-isp)
     - [Dependency Inversion Principle (DIP)](#dependency-inversion-principle-dip)
+  - [Creational Patterns](#creational-patterns)
+    - [Builder](#builder)
 
 ## The SOLID Design Principes
 
@@ -30,3 +32,11 @@
 
 > A. High-level modules should not depend on low-level modules. Both should depend on abstractions.
 > B. Abstractions should not depend on details. Details should depend on absctractions.
+
+## Creational Patterns
+
+### Builder
+
+> The goal of the Builder pattern is to define a component dedicated entirely to piecewise construction of a complicated object or set of objects.
+
+`Simple Builder` && `Fluent Builder`
