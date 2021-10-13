@@ -9,6 +9,7 @@
     - [Dependency Inversion Principle (DIP)](#dependency-inversion-principle-dip)
   - [Creational Patterns](#creational-patterns)
     - [Builder](#builder)
+    - [Factories](#factories)
 
 ## The SOLID Design Principes
 
@@ -40,3 +41,12 @@
 > The goal of the Builder pattern is to define a component dedicated entirely to piecewise construction of a complicated object or set of objects.
 
 `Simple Builder` && `Fluent Builder`
+
+### Factories
+
+> Factory is different from Builder in that, with a Factory, you typically create an object in one go, whereas with Builder, you construct the object piecewise by providing information in parts.
+
+`Factor Method` &&  `Factor`
+
+With the `friend` features in C++, it may be no need to use `inner factory`.
+
