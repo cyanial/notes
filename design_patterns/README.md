@@ -11,6 +11,7 @@
     - [Builder](#builder)
     - [Factories](#factories)
     - [Prototype](#prototype)
+    - [Singleton](#singleton)
 
 ## The SOLID Design Principes
 
@@ -54,3 +55,7 @@ With the `friend` features in C++, it may be no need to use `inner factory`.
 ### Prototype
 
 > The prototype design pattern embodies the notion of deep copying of objects so that, instead of doing full initialization each time, you can take a premade object, copy it, fiddle it a little bit, and then use it independently of the original.
+
+### Singleton
+
+> You should only have one instance of a particular component in your application. (e.g. database connection)
