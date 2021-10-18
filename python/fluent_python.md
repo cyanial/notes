@@ -31,3 +31,5 @@ list comprehension:
 [x for x in my_list]
 
 generator expression:
+
+tuple(x for x in my_list)
