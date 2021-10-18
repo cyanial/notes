@@ -33,3 +33,5 @@ list comprehension:
 generator expression:
 
 tuple(x for x in my_list)
+
+array.array('I', (x for x in my_list))
