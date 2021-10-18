@@ -12,6 +12,7 @@
     - [Factories](#factories)
     - [Prototype](#prototype)
     - [Singleton](#singleton)
+  - [Stuctural Patterns](#stuctural-patterns)
 
 ## The SOLID Design Principes
 
@@ -59,3 +60,5 @@ With the `friend` features in C++, it may be no need to use `inner factory`.
 ### Singleton
 
 > You should only have one instance of a particular component in your application. (e.g. database connection)
+
+## Stuctural Patterns
