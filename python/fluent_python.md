@@ -9,6 +9,7 @@
     - [bisect](#bisect)
     - [array.array](#arrayarray)
     - [memoryview](#memoryview)
+  - [Dict(map) && Set](#dictmap--set)
 
 ## Python 内置序列类型
 
@@ -105,3 +106,5 @@ True
 ```
 
 ### memoryview
+
+## Dict(map) && Set
