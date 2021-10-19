@@ -8,6 +8,7 @@
     - [list.sort & sorted](#listsort--sorted)
     - [bisect](#bisect)
     - [array.array](#arrayarray)
+    - [memoryview](#memoryview)
 
 ## Python 内置序列类型
 
@@ -102,3 +103,5 @@ def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
 True
 >>> 
 ```
+
+### memoryview
