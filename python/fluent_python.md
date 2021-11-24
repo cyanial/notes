@@ -10,6 +10,7 @@
     - [array.array](#arrayarray)
     - [memoryview](#memoryview)
   - [Dict(map) && Set](#dictmap--set)
+    - [dict comprehension](#dict-comprehension)
 
 ## Python 内置序列类型
 
@@ -108,3 +109,8 @@ True
 ### memoryview
 
 ## Dict(map) && Set
+
+### dict comprehension
+
+my_dict = {x : y for x, y in my_tuples}
+
