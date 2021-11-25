@@ -82,3 +82,109 @@ size_t xPortGetMinimumEverFreeHeapSize( void );
 void vApplicationMallocFailedHook( void );
 ```
 
+## Task Management
+
+### 创建任务
+
+```c
+/*
+ * pvTaskCode: Task Function pointer
+ * 
+ * #define configMAX_TASK_NAME_LEN xxx
+ * pcName: A descriptive name for the task. (For debugging aid)
+ * 
+ * usStackDepth: e.g. 100, 32-bits cpu, ( = 100 * 4 bytes ) 
+ *
+ * pvParameters: pass to task
+ *
+ * #define configMAX_PRIORITIES xxx
+ * uxPriority: 0 - configMAX_PRIORITIES-1 (low - high)
+ * 
+ * pxCreatedTask: task handle
+ *
+ * Returned value: 1. pdPASS 2. pdFAIL
+ */
+BaseType_t xTaskCreate( TaskFunction_t pvTaskCode,
+                        const char * const pcName,
+                        uint16_t ucStackDepth,
+                        void *pvParameters,
+                        UBaseType_T uxPriority,
+                        TaskHandle_t *pxCreatedTask);
+```
+
+### Example 1. Creating tasks
+
+```c
+void vTask1( void *pvParameters )
+{
+    const char *pcTaskName = "Task 1 is running\r\n";
+    volatile uint32_t ul;  // volatile to ensure ul is not optimized away.
+
+    for ( ;; )
+    {
+        vPrintString( pcTaskName )
+
+        // delay
+        for ( ul = 0; ul < mainDELAY_LOOP_COUNT; ul++ ) 
+        {
+
+        }
+    }
+}
+
+int main( void )
+{
+    xTaskCreate( vTask2, "Task 2", 1000, NULL, 1, NULL );
+
+    vTaskStartScheduler();
+
+    for ( ;; );
+}
+```
+
+### Example 2. Using the task parameter
+
+```c
+void vTaskFunction( void *pvParameters )
+{
+    char *pcTaskName;
+    volatile uint32_t ul;
+
+    pcTaskName = ( char * ) pvParameters;
+
+    for ( ;; )
+    {
+        vPrintString( pcTaskName );
+        for (ul = 0; ul < mainDELAY_LOOP_COUNT; ul++)
+        {
+
+        }
+    }
+}
+
+static const char *pcTextForTask1 = "Task1 is running\r\n";
+static const char *pcTextForTask2 = "Task2 is running\r\n";
+
+int main()
+{
+    xTaskCreate(vTaskFunction, "Task 1", 1000, (void*)pcTextForTask1, 1, NULL);
+    xTaskCreate(vTaskFunction, "Task 2", 1000, (void*)pcTextForTask2, 1, NULL);
+
+    vTaskStartScheduler();
+
+    for (;;);
+}
+```
+
+### Task states
+
+![task_states](images/task_states.png)
+
+### Block task with delay
+
+```c
+/*
+ * xTicksToDelay: ticks (e.g. pdMS_TO_TICKS(100) - 100ms)
+ */
+void vTaskDelay( TickType_t xTicksToDelay );
+```
