@@ -1,5 +1,24 @@
 # FreeRTOS
 
+- [FreeRTOS](#freertos)
+  - [Memory Manage (heap)](#memory-manage-heap)
+    - [heap_1.c](#heap_1c)
+    - [heap_2.c](#heap_2c)
+    - [heap_3.c](#heap_3c)
+    - [heap_4.c](#heap_4c)
+    - [heap_5.c](#heap_5c)
+    - [Heap 相关 API](#heap-相关-api)
+  - [Task Management](#task-management)
+    - [创建任务](#创建任务)
+    - [Example 1. Creating tasks](#example-1-creating-tasks)
+    - [Example 2. Using the task parameter](#example-2-using-the-task-parameter)
+    - [Task states](#task-states)
+    - [Block task with delay](#block-task-with-delay)
+  - [Queue Management](#queue-management)
+    - [API](#api)
+    - [Example. Blocking when receiving from a queue](#example-blocking-when-receiving-from-a-queue)
+    - [Example. Send structures on a queue](#example-send-structures-on-a-queue)
+
 ## Memory Manage (heap)
 
 FreeRTOS 五种内存分配策略 
@@ -187,4 +206,189 @@ int main()
  * xTicksToDelay: ticks (e.g. pdMS_TO_TICKS(100) - 100ms)
  */
 void vTaskDelay( TickType_t xTicksToDelay );
+```
+
+## Queue Management
+
+### API
+
+```c
+/*
+ * uxQueueLength: The maximum number of items ...
+ * uxItemSize: Data item size in bytes
+ * return parameters: handle of queue
+ */
+QueueHandle_t xQueueCreate( UBaseType_t uxQueueLength, UBaseType_t uxItemSize );
+
+BaseType_t xQueueSendToFront( QueueHandle_t xQueue, const void * pvItemToQueue, TickType_t xTicksToWait );
+BaseType_t xQueueSendToBack( QueueHandle_t xQueue, const void * pvItemToQueue, TickTypt_t xTicksToWait );
+// Interrupt-safe
+// xQueueSendToFrontFromISR()
+// xQueueSendToBackFromISR()
+
+BaseType_t xQueueReceive( QueueHandle_t xQueue, void * const pvBuffer, TickType_t xTicksToWait );
+// Interrupt-safe
+// xQueueReceiveFromISR()
+
+UBaseType_t uxQueueMessagesWaiting( QueueHandle_t xQueue );
+// Interrupt-safe
+// uxQueueMEssagesWaitingFromISR()
+
+```
+
+### Example. Blocking when receiving from a queue
+
+```c
+static void vSenderTask( void *pvParameters )
+{
+    int32_t lValueToSend;
+    BaseType_t xStatus;
+
+    lValueToSend = (int32_t) pvParameters;
+
+    for (;;) 
+    {
+        xStatus = xQueueSendToBack(xQueue, &lValueToSend, 0);
+        if (xStatus != pdPASS)
+        {
+            vPrintString("Could not send to the queue.\r\n");
+        }
+    }
+}
+
+static void vReceiverTask( void *pvParameters )
+{
+    int32_t lReceiverdValue;
+    BaseType_t xStatus;
+    const TickType_t xTicksToWait = pdMS_TO_TICKS( 100 );
+
+    for (;;)
+    {
+        if ( uxQueueMessagesWaiting(xQueue) != 0)
+        {
+            vPrintString("Queue should have been empty!\r\n");
+        }
+
+        xStatus = xQueueReceive( xQueue, &lReceivedValue, xTicksToWait );
+        if (xStatus == pdPASS)
+        {
+            vPrintStringAndNumber( "Received = ", lReceivedValue);
+        } 
+        else 
+        {
+            vPrintString("Could not receive from the queue.\r\n");
+        }
+    }
+}
+
+QueueHandle_t xQueue;
+
+int main( void )
+{
+    xQueue = xQueueCreate( 5, sizeof( int32_t ));
+
+    if (xQueue != NULL)
+    {
+        xTaskCreate(vSenderTask, "Sender1", 1000, (void *)100, 1, NULL);
+        xTaskCreate(vSenderTask, "Sender2", 1000, (void *)200, 1, NULL);
+
+        xTaskCreate(vReceiverTask, "Receiver", 1000, NULL, 2, NULL);
+
+        vTaskStartScheduler();
+    }
+    else
+    {
+
+    }
+    for (;;);
+}
+```
+
+### Example. Send structures on a queue
+
+```c
+typdef enum
+{
+    eSender1,
+    eSender2
+} DataSource_t;
+
+typedef struct
+{
+    uint8_t ucValue;
+    DataSource_t eDataSource;
+} Data_t;
+
+static const Data_t xStructuresToSend[2] =
+{
+    {100, eSender1},
+    {200, eSender2}
+};
+
+static void vSenderTask( void *pvParameters )
+{
+    BaseType_t xStatus;
+    const TickType_t xTicksToWait = pdMS_TO_TICKS( 100 );
+    for (;;)
+    {
+        xStatus = xQueueSendToBack( xQueue, pvParameters, xTicksToWait );
+        if (xStatus != pdPASS)
+        {
+            vPrintString("Could not send to the queue.\r\n");
+        }
+    }
+}
+
+static void vReceiverTask( void *pvParameters )
+{
+    Data_t xReceivedStructure;
+    BaseType_t xStatus;
+    
+    for (;;)
+    {
+        if (uxQueueMessagesWaiting(xQueue) != 3)
+        {
+            vPrintString("Queue should have been full!\r\n");
+        }
+
+        xStatus = xQueueReceive(xQueue, &xReceivedStructure, 0);
+
+        if (xStatus == pdPASS)
+        {
+            if (xReceivedStructure.eDataSource == eSender1)
+            {
+                vPrintStringAndNumber("From Sender 1 = ", xReceivedStructure.ucValue);
+            }
+            else
+            {
+                vPrintStringAndNumber("From Sender 2 = ", xReceivedStructure.ucValue);
+            }
+        }
+        else
+        {
+            vPrintString("Could not receive from the queue.\r\n");
+        }
+    }
+}
+
+QueueHandle_t xQueue;
+
+int main()
+{
+    xQueue = xQueueCreate(3, sizeof(Data_t));
+    if (xQueue != NULL)
+    {
+        xTaskCreate(vSenderTask, "Sender1", 1000, &(xStructsToSend[0]), 2, NULL);
+        xTaskCreate(vSenderTask, "Sender2", 1000, &(xStructsToSend[1]), 2, NULL);
+
+        xTaskCreate(vReceiverTask, "Receiver", 1000, NULL, 1, NULL);
+
+        vTaskStartScheduler();
+    }
+    else
+    {
+
+    }
+    for(;;);
+}
 ```
