@@ -1,5 +1,40 @@
 # tmux
 
+- [tmux](#tmux)
+  - [Shortcuts](#shortcuts)
+  - [会话管理 (session)](#会话管理-session)
+    - [创建会话](#创建会话)
+    - [分离会话](#分离会话)
+    - [显示会话](#显示会话)
+    - [接入会话](#接入会话)
+    - [关闭会话](#关闭会话)
+    - [切换会话](#切换会话)
+    - [重命名会话](#重命名会话)
+  - [会话窗口](#会话窗口)
+    - [划分窗口](#划分窗口)
+    - [切换当前窗口](#切换当前窗口)
+    - [交换窗口位置](#交换窗口位置)
+    - [窗口快捷键](#窗口快捷键)
+
+## Shortcuts
+
+|       Key(s)        |        Description        |
+| :-----------------: | :-----------------------: |
+| control+b <command> |         commands          |
+|          ?          |       commands list       |
+|                     |          Windows          |
+|          c          |    create a new window    |
+|          ,          |   rename current window   |
+|          p          | switch to previous window |
+|          n          |   switch to next window   |
+|          w          |       list windows        |
+|                     |           Panes           |
+|          %          | split window horizontally |
+|          "          |  split window vertically  |
+|      arrow key      |    go to <arrow> pane     |
+|                     |         Sessions          |
+|          d          |    detach from session    |
+
 ## 会话管理 (session)
 
 ### 创建会话
